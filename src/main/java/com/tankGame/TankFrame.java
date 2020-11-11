@@ -1,36 +1,35 @@
 package com.tankGame;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class TankFrame extends JFrame {
+public class TankFrame extends Frame {
 
     int x = 100;
     int y = 100;
 
     public TankFrame(){
-        super.setSize(500,500);
-        super.setVisible(true);
-        super.setTitle("Tank game");
-        super.setResizable(false);
+        setSize(500,500);
+        setVisible(true);
+        setTitle("Tank game");
+        setResizable(false);
 
-        super.addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
 
-        super.addKeyListener(new MyKeyListener());
+        addKeyListener(new MyKeyListener());
     }
 
     @Override
-    public void paint(Graphics g){
-        g.fillRect(x,y,50,50);
+    public void paint(Graphics g) {
+        g.fillRect(x, y, 100, 100);
     }
 
     class MyKeyListener extends KeyAdapter{
