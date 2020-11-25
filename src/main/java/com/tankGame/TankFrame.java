@@ -8,11 +8,12 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
 
-    int x = 100;
-    int y = 100;
+    int x, y = 100;
+    int speed = 20;
+    Dir dir = Dir.UP;
 
-    public TankFrame(){
-        setSize(500,500);
+    public TankFrame() {
+        setSize(500, 500);
         setVisible(true);
         setTitle("Tank game");
         setResizable(false);
@@ -29,33 +30,81 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        switch (dir) {
+            case LEFT:
+                x -= speed;
+                break;
+            case RIGTH:
+                x += speed;
+                break;
+            case UP:
+                y -= speed;
+                break;
+            case DOWN:
+                y += speed;
+                break;
+            default:
+                break;
+        }
         g.fillRect(x, y, 100, 100);
     }
 
-    class MyKeyListener extends KeyAdapter{
+    class MyKeyListener extends KeyAdapter {
+
+        boolean down = false;
+        boolean up = false;
+        boolean left = false;
+        boolean right = false;
 
         @Override
         public void keyPressed(KeyEvent e) {
             int keyType = e.getKeyCode();
-            switch (keyType){
+            switch (keyType) {
                 case KeyEvent.VK_UP:
-                    y -= 10;
+                    up = true;
                     break;
                 case KeyEvent.VK_LEFT:
-                    x -= 10;
+                    left = true;
                     break;
                 case KeyEvent.VK_DOWN:
-                    y += 10;
+                    down = true;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    x += 10;
+                    right = true;
+                    break;
+                default:
                     break;
             }
+            getTankDir();
         }
 
-//        @Override
-//        public void keyReleased(KeyEvent e) {
-//            System.out.println("抬起");
-//        }
+        @Override
+        public void keyReleased(KeyEvent e) {
+            int keyType = e.getKeyCode();
+            switch (keyType) {
+                case KeyEvent.VK_UP:
+                    up = false;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    left = false;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    down = false;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    right = false;
+                    break;
+                default:
+                    break;
+            }
+            getTankDir();
+        }
+
+        public void getTankDir() {
+            if (up) dir = Dir.UP;
+            if (down) dir = Dir.DOWN;
+            if (left) dir = Dir.LEFT;
+            if (right) dir = Dir.RIGTH;
+        }
     }
 }
