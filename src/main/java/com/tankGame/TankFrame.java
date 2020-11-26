@@ -6,11 +6,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import static com.tankGame.Dir.LEFT;
+import static com.tankGame.Dir.RIGTH;
+
 public class TankFrame extends Frame {
 
-    int x, y = 100;
-    int speed = 20;
-    Dir dir = Dir.UP;
+    Tank tank = new Tank(100, 100, Dir.UP);
 
     public TankFrame() {
         setSize(500, 500);
@@ -30,23 +31,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        switch (dir) {
-            case LEFT:
-                x -= speed;
-                break;
-            case RIGTH:
-                x += speed;
-                break;
-            case UP:
-                y -= speed;
-                break;
-            case DOWN:
-                y += speed;
-                break;
-            default:
-                break;
-        }
-        g.fillRect(x, y, 100, 100);
+        tank.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -75,7 +60,7 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
-            getTankDir();
+            setTankDir();
         }
 
         @Override
@@ -97,14 +82,14 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
-            getTankDir();
+            setTankDir();
         }
 
-        public void getTankDir() {
-            if (up) dir = Dir.UP;
-            if (down) dir = Dir.DOWN;
-            if (left) dir = Dir.LEFT;
-            if (right) dir = Dir.RIGTH;
+        public void setTankDir() {
+            if (up) tank.setDir(Dir.UP);
+            if (down) tank.setDir(Dir.DOWN);
+            if (left) tank.setDir(LEFT);
+            if (right) tank.setDir(RIGTH);
         }
     }
 }
