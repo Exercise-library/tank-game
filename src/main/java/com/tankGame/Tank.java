@@ -7,11 +7,21 @@ public class Tank {
     private int x, y ;
     private static final int speed = 20;
     private Dir dir ;
+    private boolean isExercise;
 
-    public Tank(int x, int y, Dir dir) {
+    public Tank(int x, int y, Dir dir, boolean isExercise) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.isExercise = isExercise;
+    }
+
+    public boolean isExercise() {
+        return isExercise;
+    }
+
+    public void setExercise(boolean exercise) {
+        isExercise = exercise;
     }
 
     public Dir getDir() {
@@ -43,21 +53,23 @@ public class Tank {
      * @param g
      */
     public void paint(Graphics g){
-        switch (dir) {
-            case LEFT:
-                x -= speed;
-                break;
-            case RIGTH:
-                x += speed;
-                break;
-            case UP:
-                y -= speed;
-                break;
-            case DOWN:
-                y += speed;
-                break;
-            default:
-                break;
+        if (this.isExercise) {
+            switch (dir) {
+                case LEFT:
+                    x -= speed;
+                    break;
+                case RIGTH:
+                    x += speed;
+                    break;
+                case UP:
+                    y -= speed;
+                    break;
+                case DOWN:
+                    y += speed;
+                    break;
+                default:
+                    break;
+            }
         }
         g.fillRect(x, y, 100, 100);
     }

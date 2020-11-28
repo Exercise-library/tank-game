@@ -11,7 +11,7 @@ import static com.tankGame.Dir.RIGTH;
 
 public class TankFrame extends Frame {
 
-    Tank tank = new Tank(100, 100, Dir.UP);
+    Tank tank = new Tank(100, 100, Dir.UP, false);
 
     public TankFrame() {
         setSize(500, 500);
@@ -86,10 +86,16 @@ public class TankFrame extends Frame {
         }
 
         public void setTankDir() {
-            if (up) tank.setDir(Dir.UP);
-            if (down) tank.setDir(Dir.DOWN);
-            if (left) tank.setDir(LEFT);
-            if (right) tank.setDir(RIGTH);
+            if (up || down || left || right) {
+                tank.setExercise(true);
+                if (up) tank.setDir(Dir.UP);
+                if (down) tank.setDir(Dir.DOWN);
+                if (left) tank.setDir(LEFT);
+                if (right) tank.setDir(RIGTH);
+            } else {
+                tank.setExercise(false);
+            }
+
         }
     }
 }
