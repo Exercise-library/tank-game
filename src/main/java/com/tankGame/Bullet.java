@@ -55,6 +55,9 @@ public class Bullet {
             default:
                 break;
         }
+        Color color = g.getColor();
+        g.setColor(Color.white);
         g.fillOval(x, y, 10, 10);
+        g.setColor(color);
     }
 }

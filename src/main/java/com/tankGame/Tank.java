@@ -71,7 +71,10 @@ public class Tank {
                     break;
             }
         }
+        Color color = g.getColor();
+        g.setColor(Color.green);
         g.fillRect(x, y, 100, 100);
+        g.setColor(color);
     }
 
 
