@@ -6,12 +6,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static com.tankGame.Dir.LEFT;
-import static com.tankGame.Dir.RIGTH;
-
 public class TankFrame extends Frame {
 
+    static int GAME_WIDTH = 500;
+    static int GAME_HEIGHT = 500;
+
     Tank tank = new Tank(100, 100, Dir.UP, false);
+    Bullet bullet = new Bullet(100, 100, Dir.RIGTH);
 
     public TankFrame() {
         setSize(500, 500);
@@ -32,6 +33,7 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         tank.paint(g);
+        bullet.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -90,8 +92,8 @@ public class TankFrame extends Frame {
                 tank.setExercise(true);
                 if (up) tank.setDir(Dir.UP);
                 if (down) tank.setDir(Dir.DOWN);
-                if (left) tank.setDir(LEFT);
-                if (right) tank.setDir(RIGTH);
+                if (left) tank.setDir(Dir.LEFT);
+                if (right) tank.setDir(Dir.RIGTH);
             } else {
                 tank.setExercise(false);
             }
