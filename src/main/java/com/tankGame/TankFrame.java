@@ -5,6 +5,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame {
 
@@ -12,7 +14,7 @@ public class TankFrame extends Frame {
     static int GAME_HEIGHT = 500;
 
     Tank tank = new Tank(100, 100, Dir.UP, false, this);
-    Bullet bullet = null;
+    List<Bullet> bullets = new ArrayList<Bullet>();
 
     public TankFrame() {
         setSize(500, 500);
@@ -48,8 +50,8 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         tank.paint(g);
-        if (bullet != null) {
-            bullet.paint(g);
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).paint(g);
         }
     }
 

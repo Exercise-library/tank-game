@@ -81,7 +81,7 @@ public class Tank {
     }
 
     public void attack(){
-        tankFrame.bullet = new Bullet(this.getX(), this.getY(), this.getDir());
+        tankFrame.bullets.add(new Bullet(this.getX(), this.getY(), this.getDir()));
     }
 
 
