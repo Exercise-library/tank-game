@@ -9,11 +9,14 @@ public class Tank {
     private Dir dir ;
     private boolean isExercise;
 
-    public Tank(int x, int y, Dir dir, boolean isExercise) {
+    private TankFrame tankFrame;
+
+    public Tank(int x, int y, Dir dir, boolean isExercise, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.isExercise = isExercise;
+        this.tankFrame =tankFrame;
     }
 
     public boolean isExercise() {
@@ -75,6 +78,10 @@ public class Tank {
         g.setColor(Color.green);
         g.fillRect(x, y, 100, 100);
         g.setColor(color);
+    }
+
+    public void attack(){
+        tankFrame.bullet = new Bullet(this.getX(), this.getY(), this.getDir());
     }
 
 

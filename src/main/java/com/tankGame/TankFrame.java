@@ -11,8 +11,8 @@ public class TankFrame extends Frame {
     static int GAME_WIDTH = 500;
     static int GAME_HEIGHT = 500;
 
-    Tank tank = new Tank(100, 100, Dir.UP, false);
-    Bullet bullet = new Bullet(100, 100, Dir.RIGTH);
+    Tank tank = new Tank(100, 100, Dir.UP, false, this);
+    Bullet bullet = null;
 
     public TankFrame() {
         setSize(500, 500);
@@ -48,7 +48,9 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         tank.paint(g);
-        bullet.paint(g);
+        if (bullet != null) {
+            bullet.paint(g);
+        }
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -95,6 +97,9 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_RIGHT:
                     right = false;
+                    break;
+                case KeyEvent.VK_CONTROL:
+                    tank.attack();
                     break;
                 default:
                     break;
