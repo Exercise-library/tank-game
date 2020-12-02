@@ -50,6 +50,7 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         tank.paint(g);
+        System.out.println("子弹个数：" + bullets.size());
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
