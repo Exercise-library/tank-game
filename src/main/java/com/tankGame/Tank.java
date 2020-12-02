@@ -8,8 +8,18 @@ public class Tank {
     private static final int speed = 20;
     private Dir dir ;
     private boolean isExercise;
+    private Color color = Color.GREEN;
 
     private TankFrame tankFrame;
+
+    public Tank(int x, int y, Dir dir, boolean isExercise, TankFrame tankFrame, Color color) {
+        this.x = x;
+        this.y = y;
+        this.dir = dir;
+        this.isExercise = isExercise;
+        this.tankFrame =tankFrame;
+        this.color = color;
+    }
 
     public Tank(int x, int y, Dir dir, boolean isExercise, TankFrame tankFrame) {
         this.x = x;
@@ -74,10 +84,10 @@ public class Tank {
                     break;
             }
         }
-        Color color = g.getColor();
-        g.setColor(Color.green);
-        g.fillRect(x, y, 100, 100);
+        Color colorTemp = g.getColor();
         g.setColor(color);
+        g.fillRect(x, y, 100, 100);
+        g.setColor(colorTemp);
     }
 
     public void attack(){
