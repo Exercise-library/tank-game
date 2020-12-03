@@ -10,14 +10,16 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    static int GAME_WIDTH = 500;
-    static int GAME_HEIGHT = 500;
+    static int GAME_WIDTH = 1800;
+    static int GAME_HEIGHT = 800;
+    static int ENEMY_TANK_1 = 10;
 
-    Tank tank = new Tank(100, 100, Dir.UP, false, this);
+    Tank tank = new Tank(750, 690, Dir.UP, false, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
+    List<Tank> enemyTanks = new ArrayList<Tank>();
 
     public TankFrame() {
-        setSize(500, 500);
+        setSize(GAME_WIDTH, GAME_HEIGHT);
         setVisible(true);
         setTitle("Tank game");
         setResizable(false);
@@ -40,7 +42,7 @@ public class TankFrame extends Frame {
         }
         Graphics gOffScreen = offScreenImage.getGraphics();
         Color c = gOffScreen.getColor();
-        gOffScreen.setColor(Color.BLACK);
+        gOffScreen.setColor(Color.darkGray);
         gOffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         gOffScreen.setColor(c);
         paint(gOffScreen);
@@ -49,10 +51,27 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        g.drawString("子弹剩余数量："+ bullets.size(), 50, 50);
+        g.drawString("敌军剩余坦克："+ enemyTanks.size(), 50, 70);
         tank.paint(g);
-        System.out.println("子弹个数：" + bullets.size());
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
+        }
+
+        //检测子弹与坦克是否发生碰撞
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < enemyTanks.size(); j++) {
+                bullets.get(i).detection(enemyTanks.get(j));
+            }
+        }
+
+        //画敌人坦克
+        for (int i = 0; i < enemyTanks.size(); i++) {
+            if (enemyTanks.get(i).isLive()) {
+                enemyTanks.get(i).paint(g);
+            } else {
+                enemyTanks.remove(i);
+            }
         }
     }
 
