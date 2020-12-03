@@ -19,37 +19,9 @@ public class Bullet {
         this.tankFrame = tankFrame;
     }
 
-    public Dir getDir() {
-        return dir;
-    }
-
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public void paint(Graphics g){
         this.move();
-        Color color = g.getColor();
-        g.setColor(Color.white);
-        g.fillOval(x, y, Bullet.width, Bullet.height);
-        g.setColor(color);
-
+        g.drawImage(SourceMag.bullet, x, y, null);
         //子弹死亡检测
         if (!this.live) {
             tankFrame.bullets.remove(this);
@@ -91,5 +63,30 @@ public class Bullet {
             tank.setLive(false);
         }
 
+    }
+
+
+    public Dir getDir() {
+        return dir;
+    }
+
+    public void setDir(Dir dir) {
+        this.dir = dir;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }
