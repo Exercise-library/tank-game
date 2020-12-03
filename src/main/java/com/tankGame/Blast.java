@@ -19,8 +19,7 @@ public class Blast {
         g.drawImage(SourceMag.blasts[i], x, y, null);
         i++;
         if (i >= SourceMag.blasts.length)
-            i = 0;
-
+            tankFrame.blasts.remove(this);
     }
 
 }

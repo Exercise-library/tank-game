@@ -66,7 +66,8 @@ public class Bullet {
         if (rectangleBullet.intersects(rectangleEmenyTank)) {
             this.live = false;
             tank.setLive(false);
-
+            //坦克被击毁发生爆炸
+            tankFrame.blasts.add(new Blast(tank.getX(), tank.getY(), tankFrame));
         }
 
     }
