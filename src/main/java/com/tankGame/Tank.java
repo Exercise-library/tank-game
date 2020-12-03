@@ -38,12 +38,22 @@ public class Tank {
      */
     public void paint(Graphics g){
         this.move();
-//        Color colorTemp = g.getColor();
-//        g.setColor(color);
-//        g.fillRect(x, y, 100, 100);
-//        g.setColor(colorTemp);
-
-        g.drawImage(SourceMag.tankU, x, y, null);
+        switch (dir) {
+            case UP:
+                g.drawImage(SourceMag.tankU, x, y,  null);
+                break;
+            case LEFT:
+                g.drawImage(SourceMag.tankL, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(SourceMag.tankD, x, y, null);
+                break;
+            case RIGTH:
+                g.drawImage(SourceMag.tankR, x, y, null);
+                break;
+            default:
+                break;
+        }
     }
 
     public void move(){
