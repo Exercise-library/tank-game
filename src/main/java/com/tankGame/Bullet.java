@@ -8,6 +8,7 @@ public class Bullet {
     private static final int speed = 10;
     private Dir dir;
     private boolean live = true;
+    private static final int width = 5, height = 5;
 
     private TankFrame tankFrame = null;
 
@@ -46,8 +47,10 @@ public class Bullet {
         this.move();
         Color color = g.getColor();
         g.setColor(Color.white);
-        g.fillOval(x, y, 10, 10);
+        g.fillOval(x, y, Bullet.width, Bullet.height);
         g.setColor(color);
+
+        //子弹死亡检测
         if (!this.live) {
             tankFrame.bullets.remove(this);
         }
@@ -73,5 +76,20 @@ public class Bullet {
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
             this.live = false;
         }
+    }
+
+    /**
+     * 碰撞检测
+     * @param tank
+     */
+    public void detection(Tank tank) {
+        Rectangle rectangleBullet = new Rectangle(this.x, this.y, Bullet.width, Bullet.height);
+        Rectangle rectangleEmenyTank = new Rectangle(tank.getX(), tank.getY(), tank.getWidth(), tank.getHeight());
+
+        if (rectangleBullet.intersects(rectangleEmenyTank)) {
+            this.live = false;
+            tank.setLive(false);
+        }
+
     }
 }

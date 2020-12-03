@@ -9,6 +9,8 @@ public class Tank {
     private Dir dir ;
     private boolean isExercise;
     private Color color = Color.GREEN;
+    private boolean live = true;
+    private int width = 100, height = 100;
 
     private TankFrame tankFrame;
 
@@ -27,6 +29,46 @@ public class Tank {
         this.dir = dir;
         this.isExercise = isExercise;
         this.tankFrame =tankFrame;
+    }
+
+    /**
+     * 坦克自己画自己
+     * @param g
+     */
+    public void paint(Graphics g){
+        this.move();
+        Color colorTemp = g.getColor();
+        g.setColor(color);
+        g.fillRect(x, y, 100, 100);
+        g.setColor(colorTemp);
+    }
+
+    public void move(){
+        if (this.isExercise) {
+            switch (dir) {
+                case LEFT:
+                    x -= speed;
+                    break;
+                case RIGTH:
+                    x += speed;
+                    break;
+                case UP:
+                    y -= speed;
+                    break;
+                case DOWN:
+                    y += speed;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 发射子弹
+     */
+    public void attack(){
+        tankFrame.bullets.add(new Bullet(this.getX(), this.getY(), this.getDir(), tankFrame));
     }
 
     public boolean isExercise() {
@@ -61,38 +103,19 @@ public class Tank {
         this.y = y;
     }
 
-    /**
-     * 坦克自己画自己
-     * @param g
-     */
-    public void paint(Graphics g){
-        if (this.isExercise) {
-            switch (dir) {
-                case LEFT:
-                    x -= speed;
-                    break;
-                case RIGTH:
-                    x += speed;
-                    break;
-                case UP:
-                    y -= speed;
-                    break;
-                case DOWN:
-                    y += speed;
-                    break;
-                default:
-                    break;
-            }
-        }
-        Color colorTemp = g.getColor();
-        g.setColor(color);
-        g.fillRect(x, y, 100, 100);
-        g.setColor(colorTemp);
+    public int getWidth() {
+        return width;
     }
 
-    public void attack(){
-        tankFrame.bullets.add(new Bullet(this.getX(), this.getY(), this.getDir(), tankFrame));
+    public int getHeight() {
+        return height;
     }
 
+    public boolean isLive() {
+        return live;
+    }
 
+    public void setLive(boolean live) {
+        this.live = live;
+    }
 }

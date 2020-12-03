@@ -32,11 +32,6 @@ public class TankFrame extends Frame {
         });
 
         addKeyListener(new MyKeyListener());
-
-        //创建敌人坦克
-        for (int i = 1 ; i <= ENEMY_TANK_1; i++) {
-            enemyTanks.add(new Tank(i*150, 100, Dir.DOWN, false, this, Color.YELLOW));
-        }
     }
 
     Image offScreenImage = null;
@@ -56,14 +51,27 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        g.drawString("子弹剩余数量："+ bullets.size(), 50, 50);
+        g.drawString("敌军剩余坦克："+ enemyTanks.size(), 50, 70);
         tank.paint(g);
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
 
+        //检测子弹与坦克是否发生碰撞
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < enemyTanks.size(); j++) {
+                bullets.get(i).detection(enemyTanks.get(j));
+            }
+        }
+
         //画敌人坦克
         for (int i = 0; i < enemyTanks.size(); i++) {
-            enemyTanks.get(i).paint(g);
+            if (enemyTanks.get(i).isLive()) {
+                enemyTanks.get(i).paint(g);
+            } else {
+                enemyTanks.remove(i);
+            }
         }
     }
 
