@@ -9,13 +9,15 @@ public class Bullet {
     private Dir dir;
     private boolean live = true;
     private static final int width = 5, height = 5;
+    private Group group;
 
     private TankFrame tankFrame = null;
 
-    public Bullet(int x, int y, Dir dir, TankFrame tankFrame) {
+    public Bullet(int x, int y, Dir dir, Group group,TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tankFrame = tankFrame;
     }
 
@@ -57,6 +59,9 @@ public class Bullet {
     public void detection(Tank tank) {
         Rectangle rectangleBullet = new Rectangle(this.x, this.y, Bullet.width, Bullet.height);
         Rectangle rectangleEmenyTank = new Rectangle(tank.getX(), tank.getY(), tank.getWidth(), tank.getHeight());
+        if (this.group == tank.getGroup()) {
+            return;
+        }
 
         if (rectangleBullet.intersects(rectangleEmenyTank)) {
             this.live = false;

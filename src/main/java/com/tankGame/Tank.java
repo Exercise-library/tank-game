@@ -5,30 +5,21 @@ import java.awt.*;
 public class Tank {
 
     private int x, y ;
-    private static final int speed = 20;
+    private static final int speed = 5;
     private Dir dir ;
     private boolean isExercise;
-    private Color color = Color.GREEN;
     private boolean live = true;
-    private int width = 100, height = 100;
-//    private int width = SourceMag.tankD.getWidth(), height = SourceMag.tankD.getHeight();
+    private Group group;
+    private int width = SourceMag.tankD.getWidth(), height = SourceMag.tankD.getHeight();
 
     private TankFrame tankFrame;
 
-    public Tank(int x, int y, Dir dir, boolean isExercise, TankFrame tankFrame, Color color) {
+    public Tank(int x, int y, Dir dir, boolean isExercise, Group group, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.isExercise = isExercise;
-        this.tankFrame =tankFrame;
-        this.color = color;
-    }
-
-    public Tank(int x, int y, Dir dir, boolean isExercise, TankFrame tankFrame) {
-        this.x = x;
-        this.y = y;
-        this.dir = dir;
-        this.isExercise = isExercise;
+        this.group = group;
         this.tankFrame =tankFrame;
     }
 
@@ -61,15 +52,23 @@ public class Tank {
             switch (dir) {
                 case LEFT:
                     x -= speed;
+                    width = SourceMag.tankL.getWidth();
+                    height = SourceMag.tankL.getHeight();
                     break;
                 case RIGTH:
                     x += speed;
+                    width = SourceMag.tankR.getWidth();
+                    height = SourceMag.tankR.getHeight();
                     break;
                 case UP:
                     y -= speed;
+                    width = SourceMag.tankU.getWidth();
+                    height = SourceMag.tankU.getHeight();
                     break;
                 case DOWN:
                     y += speed;
+                    width = SourceMag.tankD.getWidth();
+                    height = SourceMag.tankD.getHeight();
                     break;
                 default:
                     break;
@@ -84,16 +83,16 @@ public class Tank {
         int bulletWidth = SourceMag.bullet.getWidth(), bulletHeight = SourceMag.bullet.getHeight();
         switch (dir) {
             case UP:
-                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), tankFrame));
+                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), this.group, tankFrame));
                 break;
             case DOWN:
-                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), tankFrame));
+                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), this.group, tankFrame));
                 break;
             case LEFT:
-                tankFrame.bullets.add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), tankFrame));
+                tankFrame.bullets.add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
                 break;
             case RIGTH:
-                tankFrame.bullets.add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), tankFrame));
+                tankFrame.bullets.add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
                 break;
             default:
                 break;
@@ -133,13 +132,6 @@ public class Tank {
         this.y = y;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
 
     public boolean isLive() {
         return live;
@@ -147,5 +139,29 @@ public class Tank {
 
     public void setLive(boolean live) {
         this.live = live;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

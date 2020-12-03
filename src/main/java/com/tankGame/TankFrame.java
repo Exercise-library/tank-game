@@ -7,6 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TankFrame extends Frame {
 
@@ -14,7 +15,7 @@ public class TankFrame extends Frame {
     static int GAME_HEIGHT = 800;
     static int ENEMY_TANK_1 = 10;
 
-    Tank tank = new Tank(750, 690, Dir.UP, false, this);
+    Tank tank = new Tank(750, 690, Dir.UP, false, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> enemyTanks = new ArrayList<Tank>();
 
@@ -69,6 +70,12 @@ public class TankFrame extends Frame {
         for (int i = 0; i < enemyTanks.size(); i++) {
             if (enemyTanks.get(i).isLive()) {
                 enemyTanks.get(i).paint(g);
+
+                //活着的敌军坦克增加发射子弹的操作
+                Random ta = new Random();
+                if(ta.nextInt(10) >= 9) {
+                    enemyTanks.get(i).attack();
+                }
             } else {
                 enemyTanks.remove(i);
             }
