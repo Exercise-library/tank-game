@@ -81,7 +81,24 @@ public class Tank {
      * 发射子弹
      */
     public void attack(){
-        tankFrame.bullets.add(new Bullet(this.getX(), this.getY(), this.getDir(), tankFrame));
+        int bulletWidth = SourceMag.bullet.getWidth(), bulletHeight = SourceMag.bullet.getHeight();
+        switch (dir) {
+            case UP:
+                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), tankFrame));
+                break;
+            case DOWN:
+                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), tankFrame));
+                break;
+            case LEFT:
+                tankFrame.bullets.add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), tankFrame));
+                break;
+            case RIGTH:
+                tankFrame.bullets.add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), tankFrame));
+                break;
+            default:
+                break;
+        }
+
     }
 
     public boolean isExercise() {
