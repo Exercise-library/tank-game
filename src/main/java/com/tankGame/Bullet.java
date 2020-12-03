@@ -66,6 +66,7 @@ public class Bullet {
         if (rectangleBullet.intersects(rectangleEmenyTank)) {
             this.live = false;
             tank.setLive(false);
+
         }
 
     }

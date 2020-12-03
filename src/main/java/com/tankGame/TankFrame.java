@@ -18,6 +18,7 @@ public class TankFrame extends Frame {
     Tank tank = new Tank(750, 690, Dir.UP, false, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> enemyTanks = new ArrayList<Tank>();
+    Blast blast = new Blast(200, 200, this);
 
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -80,6 +81,8 @@ public class TankFrame extends Frame {
                 enemyTanks.remove(i);
             }
         }
+
+        blast.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {

@@ -132,7 +132,6 @@ public class Tank {
         this.y = y;
     }
 
-
     public boolean isLive() {
         return live;
     }
