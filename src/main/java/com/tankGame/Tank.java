@@ -11,6 +11,7 @@ public class Tank {
     private Color color = Color.GREEN;
     private boolean live = true;
     private int width = 100, height = 100;
+//    private int width = SourceMag.tankD.getWidth(), height = SourceMag.tankD.getHeight();
 
     private TankFrame tankFrame;
 
@@ -37,10 +38,12 @@ public class Tank {
      */
     public void paint(Graphics g){
         this.move();
-        Color colorTemp = g.getColor();
-        g.setColor(color);
-        g.fillRect(x, y, 100, 100);
-        g.setColor(colorTemp);
+//        Color colorTemp = g.getColor();
+//        g.setColor(color);
+//        g.fillRect(x, y, 100, 100);
+//        g.setColor(colorTemp);
+
+        g.drawImage(SourceMag.tankU, x, y, null);
     }
 
     public void move(){
