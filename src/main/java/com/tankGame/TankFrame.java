@@ -75,9 +75,31 @@ public class TankFrame extends Frame {
 
                 //活着的敌军坦克增加发射子弹的操作
                 Random ta = new Random();
-                if(ta.nextInt(10) >= 9) {
+                if(ta.nextInt(100) >= 98) {
                     enemyTanks.get(i).attack();
                 }
+
+                Random ta2 = new Random();
+                int tempFir = ta2.nextInt(1000);
+                if (tempFir >= 990) {
+                    switch (tempFir % 4) {
+                        case 0:
+                            enemyTanks.get(i).setDir(Dir.UP);
+                            break;
+                        case 1:
+                            enemyTanks.get(i).setDir(Dir.LEFT);
+                            break;
+                        case 2:
+                            enemyTanks.get(i).setDir(Dir.DOWN);
+                            break;
+                        case 3:
+                            enemyTanks.get(i).setDir(Dir.RIGTH);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
             } else {
                 enemyTanks.remove(i);
             }

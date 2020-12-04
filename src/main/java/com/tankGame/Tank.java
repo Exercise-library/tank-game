@@ -5,7 +5,7 @@ import java.awt.*;
 public class Tank {
 
     private int x, y ;
-    private static final int speed = 5;
+    private static final int speed = 3;
     private Dir dir ;
     private boolean isExercise;
     private boolean live = true;
