@@ -1,14 +1,19 @@
 package com.tankGame;
 
+import com.tankGame.manage.PropertiesMag;
+import com.tankGame.manage.SourceMag;
+
 import java.awt.*;
 
 public class Bullet {
 
+    private static PropertiesMag propertiesMag = PropertiesMag.getProperMagInstance();
+
     private int x, y;
-    private static final int speed = 10;
+    private static final int speed = propertiesMag.getInt("bulletSpeed");
     private Dir dir;
     private boolean live = true;
-    private static final int width = 5, height = 5;
+    private static final int width = propertiesMag.getInt("bulletWidth"), height = propertiesMag.getInt("bulletHeight");
     private Group group;
     private Rectangle rectangle = new Rectangle();
 

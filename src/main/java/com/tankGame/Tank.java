@@ -1,11 +1,16 @@
 package com.tankGame;
 
+import com.tankGame.manage.PropertiesMag;
+import com.tankGame.manage.SourceMag;
+
 import java.awt.*;
 
 public class Tank {
 
+    private static PropertiesMag propertiesMag = PropertiesMag.getProperMagInstance();
+
     private int x, y ;
-    private static final int speed = 3;
+    private static final int speed = propertiesMag.getInt("tankSpeed");
     private Dir dir ;
     private boolean isExercise;
     private boolean live = true;

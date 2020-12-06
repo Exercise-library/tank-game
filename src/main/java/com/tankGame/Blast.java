@@ -1,5 +1,7 @@
 package com.tankGame;
 
+import com.tankGame.manage.SourceMag;
+
 import java.awt.*;
 
 public class Blast {
