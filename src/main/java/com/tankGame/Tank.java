@@ -48,7 +48,7 @@ public class Tank {
     }
 
     public void move(){
-        if (this.isExercise) {
+        if (this.isExercise && this.isMove()) {
             switch (dir) {
                 case LEFT:
                     x -= speed;
@@ -98,6 +98,34 @@ public class Tank {
                 break;
         }
 
+    }
+
+    private boolean isMove(){
+        switch (dir) {
+            case UP:
+                if (this.y - 20 <= 0) {
+                    return false;
+                }
+                break;
+            case DOWN:
+                if (this.y + SourceMag.tankD.getWidth() >= TankFrame.GAME_HEIGHT) {
+                    return false;
+                }
+                break;
+            case LEFT:
+                if (this.x + 5 <= 0) {
+                    return false;
+                }
+                break;
+            case RIGTH:
+                if (this.x + SourceMag.tankR.getWidth() + 5 >= TankFrame.GAME_WIDTH) {
+                    return false;
+                }
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     public boolean isExercise() {
