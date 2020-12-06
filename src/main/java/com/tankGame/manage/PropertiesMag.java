@@ -6,6 +6,7 @@ import java.util.Properties;
 public class PropertiesMag {
 
     static Properties properties = new Properties();
+    private static PropertiesMag propertiesMag = new PropertiesMag();
 
     static {
         try {
@@ -18,7 +19,7 @@ public class PropertiesMag {
     private PropertiesMag(){}
 
     public static PropertiesMag getProperMagInstance(){
-        return new PropertiesMag();
+        return propertiesMag;
     }
 
     public Integer getInt(String key){
