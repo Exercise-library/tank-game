@@ -10,6 +10,7 @@ public class Bullet {
     private boolean live = true;
     private static final int width = 5, height = 5;
     private Group group;
+    private Rectangle rectangle = new Rectangle();
 
     private TankFrame tankFrame = null;
 
@@ -19,10 +20,18 @@ public class Bullet {
         this.dir = dir;
         this.group = group;
         this.tankFrame = tankFrame;
+
+        //更新子弹位置
+        rectangle.x = x;
+        rectangle.y = y;
+        rectangle.height = height;
+        rectangle.width = width;
     }
 
     public void paint(Graphics g){
         this.move();
+        rectangle.x = x;
+        rectangle.y = y;
         g.drawImage(SourceMag.bullet, x, y, null);
         //子弹死亡检测
         if (!this.live) {
@@ -57,13 +66,11 @@ public class Bullet {
      * @param tank
      */
     public void detection(Tank tank) {
-        Rectangle rectangleBullet = new Rectangle(this.x, this.y, Bullet.width, Bullet.height);
-        Rectangle rectangleEmenyTank = new Rectangle(tank.getX(), tank.getY(), tank.getWidth(), tank.getHeight());
         if (this.group == tank.getGroup()) {
             return;
         }
 
-        if (rectangleBullet.intersects(rectangleEmenyTank)) {
+        if (this.rectangle.intersects(tank.getRectangle())) {
             this.live = false;
             tank.setLive(false);
             //坦克被击毁发生爆炸
@@ -95,5 +102,13 @@ public class Bullet {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 }

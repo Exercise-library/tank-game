@@ -11,6 +11,7 @@ public class Tank {
     private boolean live = true;
     private Group group;
     private int width = SourceMag.tankD.getWidth(), height = SourceMag.tankD.getHeight();
+    private Rectangle rectangle = new Rectangle();
 
     private TankFrame tankFrame;
 
@@ -21,6 +22,12 @@ public class Tank {
         this.isExercise = isExercise;
         this.group = group;
         this.tankFrame =tankFrame;
+
+        //服装检测依赖
+        rectangle.x = x;
+        rectangle.y = y;
+        rectangle.width = width;
+        rectangle.height = height;
     }
 
     /**
@@ -29,6 +36,10 @@ public class Tank {
      */
     public void paint(Graphics g){
         this.move();
+
+        //碰撞检测位置更新
+        rectangle.x = x;
+        rectangle.y = y;
         switch (dir) {
             case UP:
                 g.drawImage(SourceMag.tankU, x, y,  null);
@@ -190,5 +201,13 @@ public class Tank {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 }
