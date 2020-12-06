@@ -1,9 +1,13 @@
-package com.tankGame;
+package com.tankGame.model;
 
+import com.tankGame.TankFrame;
 import com.tankGame.manage.SourceMag;
 
 import java.awt.*;
 
+/**
+ * 爆炸实体
+ */
 public class Blast {
 
     private int x, y;
@@ -21,7 +25,7 @@ public class Blast {
         g.drawImage(SourceMag.blasts[i], x, y, null);
         i++;
         if (i >= SourceMag.blasts.length)
-            tankFrame.blasts.remove(this);
+            tankFrame.getBlasts().remove(this);
     }
 
 }

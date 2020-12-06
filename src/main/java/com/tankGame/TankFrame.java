@@ -1,5 +1,11 @@
 package com.tankGame;
 
+import com.tankGame.enums.Dir;
+import com.tankGame.enums.Group;
+import com.tankGame.model.Blast;
+import com.tankGame.model.Bullet;
+import com.tankGame.model.Tank;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,15 +17,14 @@ import java.util.Random;
 
 public class TankFrame extends Frame {
 
-    static int GAME_WIDTH = 1800;
-    static int GAME_HEIGHT = 800;
-    static int ENEMY_TANK_1 = 10;
+    public static int GAME_WIDTH = 1800;
+    public static int GAME_HEIGHT = 800;
+    public static int ENEMY_TANK_1 = 10;
 
     Tank tank = new Tank(750, 690, Dir.UP, false, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> enemyTanks = new ArrayList<Tank>();
     List<Blast> blasts = new ArrayList<Blast>();
-//    Blast blast = new Blast(200, 200, this);
 
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -177,5 +182,29 @@ public class TankFrame extends Frame {
             }
 
         }
+    }
+
+    public List<Bullet> getBullets() {
+        return bullets;
+    }
+
+    public void setBullets(List<Bullet> bullets) {
+        this.bullets = bullets;
+    }
+
+    public List<Tank> getEnemyTanks() {
+        return enemyTanks;
+    }
+
+    public void setEnemyTanks(List<Tank> enemyTanks) {
+        this.enemyTanks = enemyTanks;
+    }
+
+    public List<Blast> getBlasts() {
+        return blasts;
+    }
+
+    public void setBlasts(List<Blast> blasts) {
+        this.blasts = blasts;
     }
 }

@@ -1,10 +1,16 @@
-package com.tankGame;
+package com.tankGame.model;
 
+import com.tankGame.enums.Dir;
+import com.tankGame.enums.Group;
+import com.tankGame.TankFrame;
 import com.tankGame.manage.PropertiesMag;
 import com.tankGame.manage.SourceMag;
 
 import java.awt.*;
 
+/**
+ * 坦克实体
+ */
 public class Tank {
 
     private static PropertiesMag propertiesMag = PropertiesMag.getProperMagInstance();
@@ -99,16 +105,16 @@ public class Tank {
         int bulletWidth = SourceMag.bullet.getWidth(), bulletHeight = SourceMag.bullet.getHeight();
         switch (dir) {
             case UP:
-                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), this.group, tankFrame));
+                tankFrame.getBullets().add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), this.group, tankFrame));
                 break;
             case DOWN:
-                tankFrame.bullets.add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), this.group, tankFrame));
+                tankFrame.getBullets().add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), this.group, tankFrame));
                 break;
             case LEFT:
-                tankFrame.bullets.add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
+                tankFrame.getBullets().add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
                 break;
             case RIGTH:
-                tankFrame.bullets.add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
+                tankFrame.getBullets().add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
                 break;
             default:
                 break;

@@ -1,10 +1,16 @@
-package com.tankGame;
+package com.tankGame.model;
 
+import com.tankGame.enums.Dir;
+import com.tankGame.enums.Group;
+import com.tankGame.TankFrame;
 import com.tankGame.manage.PropertiesMag;
 import com.tankGame.manage.SourceMag;
 
 import java.awt.*;
 
+/**
+ * 子弹实体
+ */
 public class Bullet {
 
     private static PropertiesMag propertiesMag = PropertiesMag.getProperMagInstance();
@@ -40,7 +46,7 @@ public class Bullet {
         g.drawImage(SourceMag.bullet, x, y, null);
         //子弹死亡检测
         if (!this.live) {
-            tankFrame.bullets.remove(this);
+            tankFrame.getBullets().remove(this);
         }
     }
 
@@ -79,7 +85,7 @@ public class Bullet {
             this.live = false;
             tank.setLive(false);
             //坦克被击毁发生爆炸
-            tankFrame.blasts.add(new Blast(tank.getX(), tank.getY(), tankFrame));
+            tankFrame.getBlasts().add(new Blast(tank.getX(), tank.getY(), tankFrame));
         }
 
     }

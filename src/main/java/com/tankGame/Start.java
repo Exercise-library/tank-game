@@ -1,6 +1,8 @@
 package com.tankGame;
 
-import java.awt.*;
+import com.tankGame.enums.Dir;
+import com.tankGame.enums.Group;
+import com.tankGame.model.Tank;
 
 /**
  * 坦克大战游戏入口
