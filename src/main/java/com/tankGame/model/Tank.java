@@ -5,6 +5,7 @@ import com.tankGame.enums.Group;
 import com.tankGame.TankFrame;
 import com.tankGame.manage.PropertiesMag;
 import com.tankGame.manage.SourceMag;
+import com.tankGame.strategy.AttackStrategy;
 
 import java.awt.*;
 
@@ -101,25 +102,8 @@ public class Tank {
     /**
      * 发射子弹
      */
-    public void attack(){
-        int bulletWidth = SourceMag.bullet.getWidth(), bulletHeight = SourceMag.bullet.getHeight();
-        switch (dir) {
-            case UP:
-                tankFrame.getBullets().add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), this.group, tankFrame));
-                break;
-            case DOWN:
-                tankFrame.getBullets().add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), this.group, tankFrame));
-                break;
-            case LEFT:
-                tankFrame.getBullets().add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
-                break;
-            case RIGTH:
-                tankFrame.getBullets().add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
-                break;
-            default:
-                break;
-        }
-
+    public void attack(AttackStrategy attackStrategy){
+        attackStrategy.attack(this, tankFrame);
     }
 
     private boolean isMove(){

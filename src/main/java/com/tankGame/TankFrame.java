@@ -5,6 +5,7 @@ import com.tankGame.enums.Group;
 import com.tankGame.model.Blast;
 import com.tankGame.model.Bullet;
 import com.tankGame.model.Tank;
+import com.tankGame.strategy.DefaultAttackStrategy;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -81,7 +82,7 @@ public class TankFrame extends Frame {
                 //活着的敌军坦克增加发射子弹的操作
                 Random ta = new Random();
                 if(ta.nextInt(100) >= 98) {
-                    enemyTanks.get(i).attack();
+                    enemyTanks.get(i).attack(new DefaultAttackStrategy());
                 }
 
                 Random ta2 = new Random();
@@ -162,7 +163,7 @@ public class TankFrame extends Frame {
                     right = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.attack();
+                    tank.attack(new DefaultAttackStrategy());
                     break;
                 default:
                     break;
