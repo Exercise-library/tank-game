@@ -6,6 +6,7 @@ import com.tankGame.model.Blast;
 import com.tankGame.model.Bullet;
 import com.tankGame.model.Tank;
 import com.tankGame.strategy.DefaultAttackStrategy;
+import com.tankGame.strategy.MultiTargetingAttackStrategy;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -163,7 +164,7 @@ public class TankFrame extends Frame {
                     right = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.attack(new DefaultAttackStrategy());
+                    tank.attack(new MultiTargetingAttackStrategy());
                     break;
                 default:
                     break;
