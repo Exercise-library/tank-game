@@ -7,6 +7,7 @@ import com.tankGame.manage.PropertiesMag;
 import com.tankGame.manage.SourceMag;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * 子弹实体
@@ -22,14 +23,16 @@ public class Bullet {
     private static final int width = propertiesMag.getInt("bulletWidth"), height = propertiesMag.getInt("bulletHeight");
     private Group group;
     private Rectangle rectangle = new Rectangle();
+    private BufferedImage bullet_image = SourceMag.bullet_small;
 
     private TankFrame tankFrame = null;
 
-    public Bullet(int x, int y, Dir dir, Group group,TankFrame tankFrame) {
+    public Bullet(int x, int y, Dir dir, Group group, BufferedImage bulletImage, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
+        this.bullet_image = bulletImage;
         this.tankFrame = tankFrame;
 
         //更新子弹位置
@@ -43,7 +46,7 @@ public class Bullet {
         this.move();
         rectangle.x = x;
         rectangle.y = y;
-        g.drawImage(SourceMag.bullet, x, y, null);
+        g.drawImage(bullet_image, x, y, null);
         //子弹死亡检测
         if (!this.live) {
             tankFrame.getBullets().remove(this);
