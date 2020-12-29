@@ -5,6 +5,7 @@ import com.tankGame.enums.Group;
 import com.tankGame.TankFrame;
 import com.tankGame.manage.PropertiesMag;
 import com.tankGame.manage.SourceMag;
+import com.tankGame.strategy.AttackStrategy;
 
 import java.awt.*;
 
@@ -15,9 +16,9 @@ public class Tank {
 
     private static PropertiesMag propertiesMag = PropertiesMag.getProperMagInstance();
 
-    private int x, y ;
+    private int x, y;
     private static final int speed = propertiesMag.getInt("tankSpeed");
-    private Dir dir ;
+    private Dir dir;
     private boolean isExercise;
     private boolean live = true;
     private Group group;
@@ -32,7 +33,7 @@ public class Tank {
         this.dir = dir;
         this.isExercise = isExercise;
         this.group = group;
-        this.tankFrame =tankFrame;
+        this.tankFrame = tankFrame;
 
         //服装检测依赖
         rectangle.x = x;
@@ -43,9 +44,10 @@ public class Tank {
 
     /**
      * 坦克自己画自己
+     *
      * @param g
      */
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         this.move();
 
         //碰撞检测位置更新
@@ -53,7 +55,7 @@ public class Tank {
         rectangle.y = y;
         switch (dir) {
             case UP:
-                g.drawImage(SourceMag.tankU, x, y,  null);
+                g.drawImage(SourceMag.tankU, x, y, null);
                 break;
             case LEFT:
                 g.drawImage(SourceMag.tankL, x, y, null);
@@ -69,7 +71,7 @@ public class Tank {
         }
     }
 
-    public void move(){
+    public void move() {
         if (this.isExercise && this.isMove()) {
             switch (dir) {
                 case LEFT:
@@ -101,28 +103,11 @@ public class Tank {
     /**
      * 发射子弹
      */
-    public void attack(){
-        int bulletWidth = SourceMag.bullet.getWidth(), bulletHeight = SourceMag.bullet.getHeight();
-        switch (dir) {
-            case UP:
-                tankFrame.getBullets().add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() - 5, this.getDir(), this.group, tankFrame));
-                break;
-            case DOWN:
-                tankFrame.getBullets().add(new Bullet(this.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), this.getY() + SourceMag.tankD.getHeight() + 5, this.getDir(), this.group, tankFrame));
-                break;
-            case LEFT:
-                tankFrame.getBullets().add(new Bullet(this.getX() - 5, this.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
-                break;
-            case RIGTH:
-                tankFrame.getBullets().add(new Bullet(this.getX() + SourceMag.tankR.getWidth() + 5, this.getY() + (SourceMag.tankR.getHeight() / 2 - bulletHeight / 2), this.getDir(), this.group, tankFrame));
-                break;
-            default:
-                break;
-        }
-
+    public void attack(AttackStrategy attackStrategy) {
+        attackStrategy.attack(this, tankFrame);
     }
 
-    private boolean isMove(){
+    private boolean isMove() {
         switch (dir) {
             case UP:
                 if (this.y - 20 <= 0) {

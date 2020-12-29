@@ -13,8 +13,8 @@ public class Start {
         TankFrame tankFrame = new TankFrame();
 
         //创建敌人坦克
-        for (int i = 1 ; i <= TankFrame.ENEMY_TANK_1; i++) {
-            tankFrame.enemyTanks.add(new Tank(i*150, 100, Dir.DOWN, true, Group.BAD, tankFrame));
+        for (int i = 1; i <= TankFrame.ENEMY_TANK_1; i++) {
+            tankFrame.enemyTanks.add(new Tank(i * 150, 100, Dir.DOWN, true, Group.BAD, tankFrame));
         }
 
         while (true) {
