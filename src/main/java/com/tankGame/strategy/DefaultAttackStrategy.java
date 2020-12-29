@@ -14,10 +14,10 @@ public class DefaultAttackStrategy implements AttackStrategy {
         int bulletWidth = SourceMag.bullet_small.getWidth(), bulletHeight = SourceMag.bullet_small.getHeight();
         switch (tank.getDir()) {
             case UP:
-                tankFrame.getBullets().add(new Bullet(tank.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), tank.getY() - 5, tank.getDir(), tank.getGroup(), SourceMag.bullet_small, tankFrame));
+                tankFrame.getBullets().add(new Bullet(tank.getX() + (SourceMag.tankU.getWidth() / 2 - bulletWidth / 2), tank.getY() - 5, tank.getDir(), tank.getGroup(), SourceMag.bullet_small, tankFrame));
                 break;
             case DOWN:
-                tankFrame.getBullets().add(new Bullet(tank.getX()+(SourceMag.tankU.getWidth()/2-bulletWidth/2), tank.getY() + SourceMag.tankD.getHeight() + 5, tank.getDir(), tank.getGroup(), SourceMag.bullet_small, tankFrame));
+                tankFrame.getBullets().add(new Bullet(tank.getX() + (SourceMag.tankU.getWidth() / 2 - bulletWidth / 2), tank.getY() + SourceMag.tankD.getHeight() + 5, tank.getDir(), tank.getGroup(), SourceMag.bullet_small, tankFrame));
                 break;
             case LEFT:
                 tankFrame.getBullets().add(new Bullet(tank.getX() - 5, tank.getY() + (SourceMag.tankL.getHeight() / 2 - bulletHeight / 2), tank.getDir(), tank.getGroup(), SourceMag.bullet_small, tankFrame));

@@ -6,7 +6,6 @@ import com.tankGame.model.Blast;
 import com.tankGame.model.Bullet;
 import com.tankGame.model.Tank;
 import com.tankGame.strategy.DefaultAttackStrategy;
-import com.tankGame.strategy.MultiTargetingAttackStrategy;
 import com.tankGame.strategy.NBombAttackStrategy;
 
 import java.awt.*;
@@ -46,9 +45,10 @@ public class TankFrame extends Frame {
     }
 
     Image offScreenImage = null;
+
     @Override
     public void update(Graphics g) {
-        if(offScreenImage == null) {
+        if (offScreenImage == null) {
             offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
         }
         Graphics gOffScreen = offScreenImage.getGraphics();
@@ -62,8 +62,8 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        g.drawString("子弹剩余数量："+ bullets.size(), 50, 50);
-        g.drawString("敌军剩余坦克："+ enemyTanks.size(), 50, 70);
+        g.drawString("子弹剩余数量：" + bullets.size(), 50, 50);
+        g.drawString("敌军剩余坦克：" + enemyTanks.size(), 50, 70);
         tank.paint(g);
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
@@ -83,7 +83,7 @@ public class TankFrame extends Frame {
 
                 //活着的敌军坦克增加发射子弹的操作
                 Random ta = new Random();
-                if(ta.nextInt(100) >= 98) {
+                if (ta.nextInt(100) >= 98) {
                     enemyTanks.get(i).attack(new DefaultAttackStrategy());
                 }
 

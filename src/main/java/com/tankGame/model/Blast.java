@@ -21,7 +21,7 @@ public class Blast {
         this.tankFrame = tankFrame;
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         g.drawImage(SourceMag.blasts[i], x, y, null);
         i++;
         if (i >= SourceMag.blasts.length)

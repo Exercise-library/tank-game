@@ -42,7 +42,7 @@ public class Bullet {
         rectangle.width = width;
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         this.move();
         rectangle.x = x;
         rectangle.y = y;
@@ -53,7 +53,7 @@ public class Bullet {
         }
     }
 
-    public void move(){
+    public void move() {
         switch (dir) {
             case LEFT:
                 x -= speed;
@@ -77,6 +77,7 @@ public class Bullet {
 
     /**
      * 碰撞检测
+     *
      * @param tank
      */
     public void detection(Tank tank) {

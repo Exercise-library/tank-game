@@ -16,17 +16,18 @@ public class PropertiesMag {
         }
     }
 
-    private PropertiesMag(){}
+    private PropertiesMag() {
+    }
 
-    public static PropertiesMag getProperMagInstance(){
+    public static PropertiesMag getProperMagInstance() {
         return propertiesMag;
     }
 
-    public Integer getInt(String key){
+    public Integer getInt(String key) {
         return Integer.valueOf(properties.get(key).toString());
     }
 
-    public String getStr(String key){
+    public String getStr(String key) {
         return properties.get(key).toString();
     }
 

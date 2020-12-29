@@ -9,6 +9,7 @@ public class SourceMag {
     public static BufferedImage tankU, tankL, tankD, tankR;
     public static BufferedImage bullet_small, bullet_big;
     public static BufferedImage[] blasts = new BufferedImage[6];
+
     static {
         try {
             tankU = ImageIO.read(SourceMag.class.getClassLoader().getResourceAsStream("image/tank-u.png"));
@@ -17,7 +18,7 @@ public class SourceMag {
             tankR = ImageIO.read(SourceMag.class.getClassLoader().getResourceAsStream("image/tank-r.png"));
 
             for (int i = 0; i < 6; i++) {
-                blasts[i] = ImageIO.read(SourceMag.class.getClassLoader().getResourceAsStream("image/blast-"+i+".png"));
+                blasts[i] = ImageIO.read(SourceMag.class.getClassLoader().getResourceAsStream("image/blast-" + i + ".png"));
             }
 
             bullet_small = ImageIO.read(SourceMag.class.getClassLoader().getResourceAsStream("image/bullet-small.png"));

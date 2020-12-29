@@ -16,9 +16,9 @@ public class Tank {
 
     private static PropertiesMag propertiesMag = PropertiesMag.getProperMagInstance();
 
-    private int x, y ;
+    private int x, y;
     private static final int speed = propertiesMag.getInt("tankSpeed");
-    private Dir dir ;
+    private Dir dir;
     private boolean isExercise;
     private boolean live = true;
     private Group group;
@@ -33,7 +33,7 @@ public class Tank {
         this.dir = dir;
         this.isExercise = isExercise;
         this.group = group;
-        this.tankFrame =tankFrame;
+        this.tankFrame = tankFrame;
 
         //服装检测依赖
         rectangle.x = x;
@@ -44,9 +44,10 @@ public class Tank {
 
     /**
      * 坦克自己画自己
+     *
      * @param g
      */
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         this.move();
 
         //碰撞检测位置更新
@@ -54,7 +55,7 @@ public class Tank {
         rectangle.y = y;
         switch (dir) {
             case UP:
-                g.drawImage(SourceMag.tankU, x, y,  null);
+                g.drawImage(SourceMag.tankU, x, y, null);
                 break;
             case LEFT:
                 g.drawImage(SourceMag.tankL, x, y, null);
@@ -70,7 +71,7 @@ public class Tank {
         }
     }
 
-    public void move(){
+    public void move() {
         if (this.isExercise && this.isMove()) {
             switch (dir) {
                 case LEFT:
@@ -102,11 +103,11 @@ public class Tank {
     /**
      * 发射子弹
      */
-    public void attack(AttackStrategy attackStrategy){
+    public void attack(AttackStrategy attackStrategy) {
         attackStrategy.attack(this, tankFrame);
     }
 
-    private boolean isMove(){
+    private boolean isMove() {
         switch (dir) {
             case UP:
                 if (this.y - 20 <= 0) {
